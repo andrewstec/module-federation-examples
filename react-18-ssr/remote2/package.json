@@ -2,16 +2,20 @@
   "name": "@react-ssr/remote2",
   "version": "0.0.0",
   "scripts": {
-    "start": "yarn build && yarn serve",
-    "serve": "npx serve dist/ -p 3002",
+    "start": "yarn run build && yarn run serve",
+    "start:client": "webpack serve --mode=development --config ./config/webpack.client.js --host 0.0.0.0 --port 3002",
+    "start:server": "webpack --watch --mode=development --config ./config/webpack.server.js",
+    "serve": "concurrently \"yarn start:client\" \"yarn start:server\"",
     "build": "yarn build:client && yarn build:server",
     "build:client": "rimraf dist/client && webpack --mode production --config config/webpack.client.js",
     "build:server": "rimraf dist/server && webpack --mode production --config config/webpack.server.js"
   },
   "dependencies": {
+    "concurrently": "^8.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "regenerator-runtime": "0.13.11"
+    "regenerator-runtime": "0.13.11",
+    "webpack-dev-server": "^4.15.1"
   },
   "devDependencies": {
     "@babel/core": "7.21.4",

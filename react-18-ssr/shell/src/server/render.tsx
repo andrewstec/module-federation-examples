@@ -2,9 +2,19 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { renderToPipeableStream } from 'react-dom/server';
 
+import { revalidate } from '@module-federation/node/utils';
+import { clearRoutes, initializeServer } from './index';
+
 import App from '../client/components/App';
 
 export default async (req, res, next) => {
+  const shouldReload = await revalidate();
+  if (shouldReload) {
+    console.log('Reloading');
+    global.clearRoutes();
+    initializeServer();
+  }
+
   const helmet = Helmet.renderStatic();
   let didError = false;
 

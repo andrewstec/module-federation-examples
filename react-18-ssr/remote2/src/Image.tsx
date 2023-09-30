@@ -16,7 +16,7 @@ const Image: React.FC = () => {
         style={{ marginBottom: '1rem' }}
         onClick={() => alert('Client side Javascript works!')}
       >
-        Click me to test i'm interactive!
+        This is where I am changing text and expected remote2 to reload
       </button>
       <img
         src="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"

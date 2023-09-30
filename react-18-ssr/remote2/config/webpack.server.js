@@ -9,7 +9,7 @@ const moduleFederationPlugin = require('./module-federation');
 const webpackConfig = {
   output: {
     path: path.resolve(__dirname, '../dist/server'),
-    filename: '[name].js',
+    filename: '[name]-[contenthash].js',
     libraryTarget: 'commonjs-module',
   },
   target: false,
